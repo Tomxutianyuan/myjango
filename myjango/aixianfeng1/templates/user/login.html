@@ -1,0 +1,27 @@
+{% extends 'user_base.html' %}
+{% load static %}
+
+{% block content %}
+    <div id="contianer">
+        <form action="{% url 'App:user_login' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">用户名</label>
+                <input type="text" class="form-control" id="exampleInputName" placeholder="用户名" name="username">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">密码</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" name="password">
+            </div>
+
+            <button type="submit" class="btn btn-default">登录</button>
+        </form>
+        <p>
+            <span style="color: red">{{ msg }}</span>
+            {% for key,error in user_login_form.errors.items %}
+                <span style="color: red">{{ error }}</span><br>
+            {% endfor %}
+
+        </p>
+    </div>
+{% endblock %}
